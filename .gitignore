@@ -1,0 +1,121 @@
+# ~/.hermes — estado do Hermes (referência se usar git no futuro)
+# Alinhado a profile-distributions + hermes-runtime-maintenance (Tijolão)
+
+# Segredos
+.env
+.env.*
+auth.json
+auth.lock
+shared/nous_auth.json
+shared/nous_auth.lock
+vault/
+mcp-tokens/
+
+# Bancos SQLite
+*.db
+*.db-shm
+*.db-wal
+
+# Gateway / locks / runtime efêmero na raiz
+*.lock
+*.pid
+gateway.sock
+gateway.pid
+gateway.lock
+gateway_state.json
+gateway-starts.log
+spawn-ledger.json
+channel_directory.json
+provider_models_cache.json
+models_dev_cache.json
+models_dev_cache.etag
+context_length_cache.yaml
+.hermes_history
+.mcp-discovery.lock
+.scratch_tip_shown
+install_id
+.restart_last_processed.json
+interrupt_debug.log
+.skills_prompt_snapshot.json
+telegram_update_receipts_*.json
+tasks.json
+
+# Logs e caches
+logs/
+cache/
+.curator_backups/
+audio_cache/
+image_cache/
+.cache/
+*.log
+
+# Sessões e runtime
+sessions/
+runtime/
+pending/
+pending_messages/
+sandboxes/
+pairing/
+proxy/
+platforms/
+
+# Backups locais (manter no disco, não no git)
+backups/
+state-snapshots/
+
+# Infra Hermes (reinstalável / estado de processo)
+installs/
+plugins/
+desktop-plugins/
+plugin-update-checks/
+bin/
+tools/
+home/
+telemetry/
+hooks/
+photon/
+pets/
+pastes/
+images/
+assets/
+skins/
+desktop/
+gateway/
+webui-mvp/
+terminal-sessions/
+
+# Kanban workspace interno
+kanban/
+kanban.db*
+workspace/
+
+# Skills — bundled do Hermes (reinstalável); versionar só custom Tijolão
+skills/*
+!skills/devops/
+!skills/devops/**
+
+# Runtime / estado de processo
+state/
+cron/
+.update_check
+tui-theme-boot.json
+web-ui-build-stamp.json
+shell-hooks-allowlist.json
+
+# Misc DBs
+shared-state.db
+response_store.db*
+runs_idempotency.db*
+projects.db
+verification_evidence.db*
+
+# Editor
+.DS_Store
+*~
+
+# Privado (não publicar — memória clínica/pessoal)
+memories/
+profiles/
+
+# Versionável (repo público ULTRON)
+# config.yaml, SOUL.md, plans/, scripts/, skills/ (custom)

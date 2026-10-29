@@ -1,0 +1,358 @@
+model:
+  default: claude-sonnet-5-5
+  provider: anthropic
+  base_url: https://api.anthropic.com
+  api_mode: anthropic_messages
+providers:
+  nine-router:
+    name: 9Router
+    api: http://127.0.0.1:20128/v1
+    key_env: NINEROUTER_KEY
+    transport: chat_completions
+    default_model: cx/gpt-5.6-sol
+    discover_models: true
+  poolside:
+    name: Poolside
+    api: https://inference.poolside.ai/v1
+    key_env: POOLSIDE_API_KEY
+    transport: chat_completions
+    default_model: poolside/laguna-s-2.1
+    models:
+      - poolside/laguna-s-2.1
+      - poolside/laguna-xs-2.1
+    discover_models: true
+fallback_providers:
+  - base_url: http://127.0.0.1:20128/v1
+    model: cc/claude-opus-5-5
+    provider: custom
+    api_key: ${NINEROUTER_KEY}
+  - base_url: https://inference.poolside.ai/v1
+    model: poolside/laguna-s-2.1
+    provider: custom
+    api_key: ${POOLSIDE_API_KEY}
+toolsets:
+  - hermes-cli
+  - web
+database:
+  journal_mode: wal
+runtime:
+  nofile_soft_limit: 4096
+agent:
+  max_turns: 500
+  personalities: {}
+  reasoning_effort: low
+  verbose: false
+terminal:
+  backend: docker
+  cwd: 'workspace'
+  timeout: 180
+  home_mode: auto
+  container_cpu: 1
+  container_memory: 5120
+  container_disk: 51200
+  container_persistent: true
+  docker_mount_cwd_to_workspace: false
+  lifetime_seconds: 300
+browser:
+  inactivity_timeout: 120
+tool_loop_guardrails:
+  warnings_enabled: true
+  hard_stop_enabled: true
+  warn_after:
+    exact_failure: 2
+    same_tool_failure: 3
+    idempotent_no_progress: 2
+  hard_stop_after:
+    exact_failure: 5
+    same_tool_failure: 8
+    idempotent_no_progress: 5
+compression:
+  enabled: false
+  progress_notices: false
+  threshold: 0.5
+  target_ratio: 0.2
+  tail_mode: lean
+  protect_last_n: 20
+  min_tail_user_messages: 3
+  max_attempts: 3
+  proactive_prune_tokens: 0
+  proactive_prune_min_result_chars: 8000
+  proactive_prune_min_reclaim_tokens: 4096
+  protect_first_n: 3
+  codex_gpt55_autoraise: true
+  codex_app_server_auto: native
+  codex_responses_native: false
+  codex_responses_compact_threshold: 200000
+  in_place: true
+  idle_compact_after_seconds: 0
+prompt_caching:
+  cache_ttl: 5m
+display:
+  compact: true
+  personality: technical
+  busy_input_mode: interrupt
+  bell_on_complete: false
+  show_reasoning: true
+  background_process_notifications: concise
+  streaming: true
+  show_cost: true
+  skin: default
+  interim_assistant_messages: true
+  busy_ack_detail: true
+  cleanup_progress: false
+  long_running_notifications: true
+  tool_progress: all
+dashboard:
+  basic_auth:
+    username: ${DASHBOARD_USERNAME}
+    password_hash: ${DASHBOARD_PASSWORD_HASH}
+    secret: ${DASHBOARD_AUTH_SECRET}
+stt:
+  enabled: false
+  language: pt
+  local:
+    model: base
+  openai:
+    model: whisper-1
+    language: pt
+context:
+  engine: compressor
+memory:
+  memory_enabled: true
+  user_profile_enabled: true
+  memory_char_limit: 2200
+  user_char_limit: 1375
+  nudge_interval: 10
+  flush_min_turns: 6
+skills:
+  creation_nudge_interval: 15
+  disabled:
+    - apple-notes
+    - apple-reminders
+    - ascii-art
+    - ascii-video
+    - baoyu-infographic
+    - blogwatcher
+    - box
+    - comfyui
+    - competitor-news-monitor
+    - design-md
+    - evaluating-llms-harness
+    - excalidraw
+    - findmy
+    - gif-search
+    - imessage
+    - llama-cpp
+    - manim-video
+    - nine-router
+    - openhue
+    - p5js
+    - popular-web-designs
+    - pretext
+    - product-price-monitor
+    - research-paper-writing
+    - sasi-cockpit-pipeline
+    - sasi-schema-planning
+    - sdlc-review
+    - serving-llms-vllm
+    - sketch
+    - songsee
+    - songwriting-and-ai-music
+    - teams-meeting-pipeline
+    - touchdesigner-mcp
+    - weights-and-biases
+    - xurl
+telegram:
+  allowed_chats: ${TELEGRAM_ALLOWED_CHATS}
+hooks:
+  outbound:
+    - name: ultron-n8n-session-end
+      url: http://127.0.0.1:5678/webhook/ultron-hermes
+      events: [on_session_end]
+      timeout: 10
+approvals:
+  mode: false
+  destructive_slash_confirm: false
+command_allowlist:
+  - recursive delete
+  - script execution via -e/-c flag
+  - overwrite system file via redirection
+  - execute_code
+  - pipe remote content to shell
+kanban:
+  review_dispatch: true
+code_execution:
+  max_tool_calls: 50
+  timeout: 300
+tools:
+  tool_search:
+    enabled: true
+    threshold_pct: 2
+    search_default_limit: 5
+    listing: auto
+    listing_max_tokens: 1200
+streaming:
+  enabled: true
+onboarding:
+  seen:
+    busy_input_prompt: true
+    tool_progress_prompt: true
+telemetry:
+  shared_metrics:
+    enabled: false
+    send: false
+    offer_version: 2
+updates:
+  pre_update_backup: quick
+  backup_keep: 5
+  non_interactive_local_changes: stash
+_config_version: 50
+group_sessions_per_user: true
+known_builtin_toolsets:
+  cli:
+    - browser
+    - clarify
+    - code_execution
+    - computer_use
+    - connections
+    - context_engine
+    - cronjob
+    - delegation
+    - discord
+    - discord_admin
+    - file
+    - image_gen
+    - kanban
+    - memory
+    - session_search
+    - skills
+    - stt
+    - terminal
+    - todo
+    - tts
+    - video
+    - video_gen
+    - vision
+    - web
+    - x_search
+    - yuanbao
+known_plugin_toolsets:
+  cli:
+    - a2a
+mcp_servers:
+  playwright:
+    command: npx
+    args:
+      - -y
+      - "@playwright/mcp@latest"
+      - --headless
+    idle_timeout_seconds: 900
+    max_lifetime_seconds: 86400
+  github:
+    command: npx
+    args:
+      - -y
+      - "@modelcontextprotocol/server-github"
+    env:
+      GITHUB_PERSONAL_ACCESS_TOKEN: ${GITHUB_TOKEN}
+  filesystem:
+    command: npx
+    args:
+      - -y
+      - "@modelcontextprotocol/server-filesystem"
+      - /home/dr
+  postgres:
+    command: npx
+    args:
+      - -y
+      - "@modelcontextprotocol/server-postgres"
+      - ${POSTGRES_MCP_DSN}
+    enabled: false
+  context7:
+    command: /home/dr/.hermes/home/.local/bin/context7-mcp
+    args: []
+    connect_timeout: 120
+    env:
+      CONTEXT7_API_KEY: ${CONTEXT7_API_KEY}
+    enabled: true
+  cloudflare:
+    url: https://mcp.cloudflare.com/mcp?codemode=false
+    auth: oauth
+    enabled: false
+    tools:
+      exclude:
+        - docs
+        - '*_radar_*'
+        - '*_accounts_magic_*'
+        - '*_accounts_mnm_*'
+        - '*_accounts_cni_*'
+        - '*_accounts_teamnet_*'
+        - '*_accounts_cloudforceone_*'
+        - '*_accounts_dlp_*'
+        - '*_accounts_devices*'
+        - '*_accounts_dex_*'
+        - '*_accounts_datasecurity_*'
+        - '*_accounts_emailsecurity_*'
+        - '*_accounts_scim_*'
+        - '*_accounts_gateway*'
+        - '*_accounts_zerotrust_*'
+        - '*_accounts_one_*'
+        - '*_accounts_brandprotection_*'
+        - '*_accounts_intel_*'
+        - '*_accounts_urlscanner_*'
+        - '*_accounts_vuln_scanner_*'
+        - '*_zones_securitycenter_*'
+        - '*_accounts_securitycenter_*'
+        - '*_zones_api_gateway_*'
+        - '*_zones_schema_validation*'
+        - '*_zones_token_validation*'
+        - '*_zones_waiting_rooms*'
+        - '*_accounts_addressing_*'
+        - '*_accounts_shares*'
+        - '*_accounts_slurper_*'
+        - '*_zones_web3_*'
+        - '*_accounts_flagship_*'
+        - '*_zones_secondary_dns_*'
+        - '*_accounts_secondary_dns_*'
+        - '*_user_load_balancers*'
+platform_toolsets:
+  cli:
+    - clarify
+    - code_execution
+    - connections
+    - cronjob
+    - delegation
+    - file
+    - kanban
+    - memory
+    - session_search
+    - skills
+    - terminal
+    - todo
+    - vision
+    - web
+  discord:
+    - hermes-discord
+  qqbot:
+    - hermes-qqbot
+  signal:
+    - hermes-signal
+  slack:
+    - hermes-slack
+  telegram:
+    - hermes-telegram
+  whatsapp:
+    - hermes-whatsapp
+  yuanbao:
+    - hermes-yuanbao
+session_reset:
+  at_hour: 4
+  idle_minutes: 1440
+  mode: none
+sessions:
+  vacuum_after_prune: true
+plugins:
+  enabled:
+    - disk-cleanup
+    - hermes-honcho-plugin
+  disabled: []
