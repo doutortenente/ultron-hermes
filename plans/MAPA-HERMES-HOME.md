@@ -48,7 +48,7 @@ O que **não** era oficial e já saiu: `.local/state/hermes/` (nest vazio), `.he
 
 | Tipo | Pasta correta | Errado (exemplos corrigidos) |
 |------|---------------|------------------------------|
-| Planos, auditorias, inventários | `plans/`, `plans/archive/` | `cache/auditoria-tijolao/` (movido), `skills/sasi_v3_inventory.md` → `plans/sasi-v3-inventory.md` |
+| Planos, auditorias, inventários | `plans/` (ativos), `plans/reference/` (inventários longos), `plans/archive/` (histórico) | `cache/auditoria-tijolao/` (movido), `skills/sasi_v3_inventory.md` → `plans/reference/sasi-v3-inventory.md` |
 | Memória longa do agente | `memories/` (`USER.md`, `MEMORY.md`) | `pastes/`, `plans/` |
 | Código / repos | `~/src` (host) | `~/.hermes/workspace/` (só mesa + JSON da UI workspace) |
 | Skills tuas | `skills/devops/` (Tijolão), `skills/productivity/` (ex.: i-have-adhd) | Raiz de `skills/` solto, `skills/development/mestre-zed` → **`skills/devops/mestre-zed`** |
@@ -56,6 +56,17 @@ O que **não** era oficial e já saiu: `.local/state/hermes/` (nest vazio), `.he
 | Clipboard do agente | `pastes/` — **apagar** dumps de `.env`/senhas na hora | Nunca versionar |
 
 **`workspace/`** — deixar: `knowledge-config.json`, `mcp-presets.json`, `mcp-hub-sources.json`, `cache/mcp-tools.json` (hermes-workspace lê daqui).
+
+### Layout `plans/` (29-out)
+
+| Caminho | Conteúdo |
+|---------|----------|
+| `plans/MAPA-HERMES-HOME.md` | Este índice |
+| `plans/ULTRON.md` | Norte do projeto ULTRON |
+| `plans/REPO-ULTRON-HERMES.md` | Repo público |
+| `plans/MCP-AUDIT.md` | Auditoria MCP |
+| `plans/reference/` | Inventários longos (ex.: SASI v3) |
+| `plans/archive/` | Planos executados, relatórios, auditoria Tijolão |
 
 **`kanban/attachments/`** — anexos de tarefa; cópia de relatório também em `plans/archive/` quando for documento teu.
 
@@ -73,7 +84,8 @@ Não existe pasta `scripts/` no momento (Hermes recria se precisar). `profiles/`
 
 | Problema | Ação |
 |----------|------|
-| Doc SASI em `skills/` | → `plans/sasi-v3-inventory.md` |
+| Doc SASI em `skills/` | → `plans/reference/sasi-v3-inventory.md` |
+| Planos históricos soltos em `plans/` | `2026-09-25_…`, `9router-stack-integration.md` → `plans/archive/` |
 | Auditoria Tijolão em `cache/` | → `plans/archive/auditoria-tijolao/` |
 | `.local/state/hermes/` morto | Removido |
 | Paste com **senhas/tokens** em `pastes/` | **Apagado** — usar só cofre `.env` |
