@@ -48,7 +48,7 @@
 | `kanban/` + `kanban.db` | Quadro de tarefas |
 | `plugins/`, `desktop-plugins/` | Honcho, disk-cleanup, etc. |
 | `skills/` | Skills (catálogo + tuas em `devops/`) |
-| `scripts/` | Ex.: whatsapp-bridge |
+| `scripts/` | (vazio / removido whatsapp-bridge) |
 | `webui-mvp/` | Gravações/UI experimental — runtime |
 | `terminal-sessions/` | Estado terminal — runtime |
 
