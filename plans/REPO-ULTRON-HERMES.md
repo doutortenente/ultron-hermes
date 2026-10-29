@@ -25,7 +25,7 @@ DASHBOARD_AUTH_SECRET=...
 
 ## MCP
 
-`plans/MCP-AUDIT.md`
+`plans/reference/MCP-AUDIT.md`
 
 ## Mapa da pasta
 

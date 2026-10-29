@@ -64,8 +64,7 @@ O que **não** era oficial e já saiu: `.local/state/hermes/` (nest vazio), `.he
 | `plans/MAPA-HERMES-HOME.md` | Este índice |
 | `plans/ULTRON.md` | Norte do projeto ULTRON |
 | `plans/REPO-ULTRON-HERMES.md` | Repo público |
-| `plans/MCP-AUDIT.md` | Auditoria MCP |
-| `plans/reference/` | Inventários longos (ex.: SASI v3) |
+| `plans/reference/` | Inventários e auditorias (SASI v3, MCP-AUDIT, …) |
 | `plans/archive/` | Planos executados, relatórios, auditoria Tijolão |
 
 **`kanban/attachments/`** — anexos de tarefa; cópia de relatório também em `plans/archive/` quando for documento teu.
@@ -85,7 +84,7 @@ Não existe pasta `scripts/` no momento (Hermes recria se precisar). `profiles/`
 | Problema | Ação |
 |----------|------|
 | Doc SASI em `skills/` | → `plans/reference/sasi-v3-inventory.md` |
-| Planos históricos soltos em `plans/` | `2026-09-25_…`, `9router-stack-integration.md` → `plans/archive/` |
+| Planos históricos soltos em `plans/` | → `plans/archive/` (2ª passagem: MCP-AUDIT → `reference/`) |
 | Auditoria Tijolão em `cache/` | → `plans/archive/auditoria-tijolao/` |
 | `.local/state/hermes/` morto | Removido |
 | Paste com **senhas/tokens** em `pastes/` | **Apagado** — usar só cofre `.env` |
@@ -93,6 +92,8 @@ Não existe pasta `scripts/` no momento (Hermes recria se precisar). `profiles/`
 | `mestre-zed` em `development/` | → `skills/devops/mestre-zed` |
 | `i-have-adhd` solto em `skills/` | → `skills/productivity/i-have-adhd` |
 | 5 backups `config.yaml.good` no mesmo dia | 2 ativos + resto em `backups/config/archive/` |
+
+**2ª passagem (29-out, tarde):** `plugins/hermes-honcho-plugin/docs/`, `kanban/attachments/`, `skills/*` por categoria, `workspace/*.json`, `state/*`, raiz runtime — **lugar correto; sem movimentação.**
 
 ---
 
