@@ -51,7 +51,7 @@ O que **não** era oficial e já saiu: `.local/state/hermes/` (nest vazio), `.he
 | Planos, auditorias, inventários | `plans/` (ativos), `plans/reference/` (inventários longos), `plans/archive/` (histórico) | `cache/auditoria-tijolao/` (movido), `skills/sasi_v3_inventory.md` → `plans/reference/sasi-v3-inventory.md` |
 | Memória longa do agente | `memories/` (`USER.md`, `MEMORY.md`) | `pastes/`, `plans/` |
 | Código / repos | `~/src` (host) | `~/.hermes/workspace/` (só mesa + JSON da UI workspace) |
-| Skills tuas | `skills/devops/` (Tijolão), `skills/productivity/` (ex.: i-have-adhd) | Raiz de `skills/` solto, `skills/development/mestre-zed` → **`skills/devops/mestre-zed`** |
+| Skills tuas | `skills/devops/` (Tijolão + SASI + harness-insights), `skills/productivity/` (ex.: mestre-airtable, i-have-adhd) | `software-development/sasi-*` → **`skills/devops/sasi-*`**; `mestre-zed` → **`skills/devops/mestre-zed`** |
 | Backups de config | `backups/config/` (2 `.good` recentes; resto em `backups/config/archive/`) | Raiz, `cache/` |
 | Clipboard do agente | `pastes/` — **apagar** dumps de `.env`/senhas na hora | Nunca versionar |
 
@@ -90,10 +90,28 @@ Não existe pasta `scripts/` no momento (Hermes recria se precisar). `profiles/`
 | Paste com **senhas/tokens** em `pastes/` | **Apagado** — usar só cofre `.env` |
 | Nota npm container em paste | → `plans/archive/container-npm-audit-2026.txt` |
 | `mestre-zed` em `development/` | → `skills/devops/mestre-zed` |
+| SASI + harness em `software-development/` | → `skills/devops/sasi-cockpit-pipeline`, `sasi-schema-planning`, `harness-insights` |
 | `i-have-adhd` solto em `skills/` | → `skills/productivity/i-have-adhd` |
 | 5 backups `config.yaml.good` no mesmo dia | 2 ativos + resto em `backups/config/archive/` |
 
 **2ª passagem (29-out, tarde):** `plugins/hermes-honcho-plugin/docs/`, `kanban/attachments/`, `skills/*` por categoria, `workspace/*.json`, `state/*`, raiz runtime — **lugar correto; sem movimentação.**
+
+**3ª passagem (29-out, noite):** skills custom **Nícholas/SASI** estavam em `software-development/` → movidas para `skills/devops/` (`sasi-cockpit-pipeline`, `sasi-schema-planning`, `harness-insights`). Restante de `~/.hermes` varrido (cache UV/npm, `home/` fake HOME, `logs/curator/REPORT.md` = runtime Hermes) — **sem mais realocação**.
+
+### Veredicto por pasta (fim da auditoria)
+
+| Pasta | Veredicto |
+|-------|-----------|
+| `plans/` | Organizado (ativos / reference / archive) |
+| `skills/devops/` | **Todas** skills custom Tijolão + SASI + harness |
+| `skills/productivity/` | Custom: mestre-airtable, i-have-adhd (+ bundled) |
+| `skills/*` (outras categorias) | Bundled Hub — não mover |
+| `memories/`, `SOUL.md`, `config.yaml` | Identidade — raiz ou memories |
+| `workspace/` | 4 JSON da UI — não misturar com `~/src` |
+| `kanban/`, `plugins/`, `tools/`, `bin/` | Runtime / anexos — ok |
+| `cache/`, `logs/`, `sessions/`, `state/`, `installs/`, `home/` | Runtime Nous — **não reorganizar** |
+| `backups/`, `pastes/`, `assets/`, `pets/` | Backups locais / vazio / UI — ok |
+| Raiz `*.db`, gateway, caches JSON | Caminhos fixos upstream — **não mover** |
 
 ---
 
