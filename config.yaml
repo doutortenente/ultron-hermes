@@ -42,6 +42,8 @@ agent:
   personalities: {}
   reasoning_effort: low
   verbose: false
+  disabled_toolsets:
+    - hermes-whatsapp
 terminal:
   backend: docker
   cwd: 'workspace'
@@ -164,6 +166,9 @@ skills:
     - xurl
 telegram:
   allowed_chats: ${TELEGRAM_ALLOWED_CHATS}
+platforms:
+  whatsapp:
+    enabled: false
 hooks:
   outbound:
     - name: ultron-n8n-session-end
@@ -341,8 +346,6 @@ platform_toolsets:
     - hermes-slack
   telegram:
     - hermes-telegram
-  whatsapp:
-    - hermes-whatsapp
   yuanbao:
     - hermes-yuanbao
 session_reset:
