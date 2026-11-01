@@ -1,15 +1,16 @@
 model:
-  default: claude-sonnet-5-5
-  provider: anthropic
-  base_url: https://api.anthropic.com
-  api_mode: anthropic_messages
+  default: gcli/grok-4.7
+  provider: custom
+  base_url: http://127.0.0.1:20128/v1
+  api_mode: chat_completions
+  api_key: ${NINEROUTER_KEY_DEFAULT}
 providers:
   nine-router:
     name: 9Router
     api: http://127.0.0.1:20128/v1
     key_env: NINEROUTER_KEY
     transport: chat_completions
-    default_model: cx/gpt-5.6-sol
+    default_model: gcli/grok-4.7
     discover_models: true
   poolside:
     name: Poolside
